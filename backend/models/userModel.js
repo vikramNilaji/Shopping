@@ -1,37 +1,34 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-// 1. Define the Blueprint (Schema)
-const userSchema = new mongoose.Schema(
+const userSchema=new mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: [true, 'Please add a name'],
+    name:{
+      type:String,
+      required:[true,"Add a user name"]
     },
-    email: {
-      type: String,
-      required: [true, 'Please add an email'],
-      unique: true, // Prevents two users from signing up with the same email
-      trim: true,   // Automatically removes accidental spaces before/after the email
-      lowercase: true,
+    email:{
+      type:String,
+      required:[true,"Add an user email"],
+      unique:true,
+      trim:true,
+      lowercase:true,
+
     },
-    password: {
-      type: String,
-      required: [true, 'Please add a password'],
-      minlength: [6, 'Password must be at least 6 characters long'],
+    password:{
+      type:String,
+      required:[true,"Please add a password"],
+      minlength:[6,"minimum 6 characters required"]
     },
-    isAdmin: {
-      type: Boolean,
-      required: true,
-      default: false, // Normal users are not admins by default
-    },
-  },
-  {
-    timestamps: true, // Automatically creates 'createdAt' and 'updatedAt' fields for us
+    isAdmin:{
+      type:Boolean,
+      required:true,
+      default:false
+    }
+  },{
+    temestamps:true,
   }
-);
+)
 
-// 2. Create the Model tool based on the schema
-const User = mongoose.model('User', userSchema);
+const User=mongoose.model("User",userSchema)
 
-// 3. Export it so our controllers can use it later
-module.exports = User;
+export default User
