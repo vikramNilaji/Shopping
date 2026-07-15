@@ -1,18 +1,18 @@
 {
   "name": "shopping",
   "version": "1.0.0",
-  "description": "project with all the utilities of online shopping",
-  "main": "index.js",
+  "description": "shopping project",
+  "main": "server.js",
+  "type":"module",
   "scripts": {
-    "start":"node server.js",
-    "dev":"nodemon server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vikramNilaji/Shopping.git"
   },
-  "keywords": [],
-  "author": "",
+  "author": "vikram",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/vikramNilaji/Shopping/issues"
