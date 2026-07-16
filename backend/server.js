@@ -1,24 +1,20 @@
-import express from "express";
-import cors from "cors";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
-import User from "./models/userModels.js";
+const express = require('express');
+const dotenv = require('dotenv');
+// const connectDB = require('./config/db'); 
+
+// 1. Import the combined auth routes file
+const authRoutes = require('./routes/auth');
 
 dotenv.config();
-
 const app = express();
-app.use(cors());
+
+// Middleware to parse JSON body data (Required to read req.body)
 app.use(express.json());
 
-app.post("/api/users/register", async (req, res) => {
-    try {
-        const {name,email,password}=req.body;
-        const userExists= await User.findOne({email});
-        
+// connectDB(); // Fire up your MongoDB connection
 
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-})
+// 2. Link your auth routes file to a base path
+app.use('/api/auth', authRoutes);
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
