@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/userModel.js";
 import cors from "cors";
-
+import {protect} from "../middleware/authMiddleware.js";
 const router = express.Router();
 
 router.post("/post", async (req, res) => {
@@ -48,5 +48,18 @@ router.post("/post", async (req, res) => {
     res.status(500).json({ message: "Server error during signup" });
   }
 });
+
+router.get("/profile",protect,async (req,res)=>{
+  try {
+    res.status(200).json({
+      success:true,
+      user:req.user
+    })
+    
+  } catch (error) {
+    res.status(500).json({message:"Server Error fetching profile"})
+    
+  }
+})
 
 export default router;
