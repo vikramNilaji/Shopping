@@ -1,19 +1,21 @@
-import bcrypt from "bcryptjs"
+import bcrypt from 'bcryptjs';
 
-const hashPassword=bcrypt.hashSync('123456',salt);
+// Automatically generates salt and hashes the password in one step
+const hashedPassword = bcrypt.hashSync('123456', 10);
 
-const users=[
+const users = [
     {
-        name:"Admin User",
-        email:"admin@shopping.com",
-        password:hashedPassword,
-        isAdmin:true
+        name: 'Admin User',
+        email: 'admin@shopping.com',
+        password: hashedPassword,
+        isAdmin: true,
     },
-    {name:'Jane Doe',
-        email:"jan@example.com",
-        password:hashPassword,
-        isAdmin:false
-    }
+    {
+        name: 'Jane Doe',
+        email: 'jane@example.com',
+        password: hashedPassword,
+        isAdmin: false,
+    },
 ];
 
 export default users;

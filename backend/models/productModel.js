@@ -1,29 +1,15 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const reviewSchema = mongoose.Schema(
-  {
-    name: { type: String, required: true },
-    rating: { type: String, required: true },
-    user: {
-      type: mongoose.Schema.Types.Objectid,
-      required: true,
-      ref: "User",
-    },
-  },
-  { timestamp: true },
-);
-
-const productSchema = mongoose.Schema(
+const productSchema = new mongoose.Schema(
   {
     user: {
-      type: mongoose.Schema.Types.Objectid,
+      type: mongoose.Schema.Types.ObjectId, // Notice the capital 'S' in Schema
       required: true,
-      ref: "User",
+      ref: 'User', // References the User model
     },
     name: {
       type: String,
       required: true,
-      trim: true,
     },
     image: {
       type: String,
@@ -41,8 +27,12 @@ const productSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    reviews: [reviewSchema],
     rating: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    numReviews: {
       type: Number,
       required: true,
       default: 0,
@@ -60,7 +50,9 @@ const productSchema = mongoose.Schema(
   },
   {
     timestamps: true,
-  },
+  }
 );
-const Product = mongoose.model("Product", productSchema);
+
+const Product = mongoose.model('Product', productSchema);
+
 export default Product;
